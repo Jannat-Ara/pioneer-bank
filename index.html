@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pioneer Bank</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -22,7 +22,7 @@
             <div class="col-md-4">
                 <div class="deposit status">
                 <h5>Deposit</h5>
-                <h2>$00</h2>
+                <h2>$ <span id="currentDeposit">00</span></h2>
              </div>
             </div>
             <div class="col-md-4">
@@ -42,8 +42,8 @@
             <div class="col-md-6">
                <div class="submit-area">
                 <h4>Deposit</h4>
-                <input type="text" class="form-control" placeholder="$ amount you want to deposit"><br>
-                <button class="btn btn-success">Deposit</button>
+                <input id="depositAmount"type="text" class="form-control" placeholder="$ amount you want to deposit"><br>
+                <button id="addDeposit"class="btn btn-success">Deposit</button>
                </div>
             </div>
             <div class="col-md-6">
@@ -63,6 +63,23 @@
             const transactionArea= document.getElementById("transaction-area")
             transactionArea.style.display="block";
         })
+
+        // deposit Button event handler
+        const depositBtn= document.getElementById("addDeposit");
+        depositBtn.addEventListener("click",function(){
+            const depositAmount= document.getElementById("depositAmount").value;
+            const depositNumber= parseFloat(depositAmount);
+
+            const currentDeposit = document.getElementById("currentDeposit").innerText;
+            const currentDepositNumber = parseFloat(currentDeposit);
+            const totalDeposit = currentDepositNumber+depositNumber;
+
+            document.getElementById("currentDeposit").innerText= totalDeposit;
+            document.getElementById("depositAmount").value ="";
+
+
+
+        }) 
 
     </script>
 </body>
